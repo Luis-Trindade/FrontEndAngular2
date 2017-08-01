@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-xl-12">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <i class="fa fa-dashboard"></i> <a href="Javascript:void(0)" [routerLink]="['/dashboard']">Dashboard</a>
+            </li>
+            <div *ngIf="secondheading;then doisfilhos else umfilho"></div>
+
+            <ng-template #umfilho>
+                <li class="breadcrumb-item active"><i class="fa {{icon}}"></i> {{heading}}</li>
+            </ng-template>
+            <ng-template #doisfilhos>
+                <li class="breadcrumb-item"><i class="fa {{icon}}"></i>{{heading}}</li>
+                <li *ngIf="secondheading" class="breadcrumb-item active"><i class="fa {{icon}}"></i> {{ secondheading }}</li>
+            </ng-template>
+        </ol>
+    </div>
+</div>

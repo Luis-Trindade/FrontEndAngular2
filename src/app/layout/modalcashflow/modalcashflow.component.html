@@ -1,0 +1,37 @@
+<button type="button" id="cashflow_button" class="btn btn-default" (click)="open(modalcashflow)">CashFlow</button>
+    <ng-template #modalcashflow let-c="close" let-d="dismiss" >
+        <div class="modal-header modal-header-primary">
+            <h4 class="modal-title">Cashflow de rendas</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Data</th>
+                    <th>Capital Inicial</th>
+                    <th>Valor</th>
+                    <th>Capital</th>
+                    <th>Juro</th>
+                    <th>Imposto</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let c of cashflow">
+                    <th>{{ c.datainiper | date: 'dd-MM-yyyy' }}</th>
+                    <td>{{ c.capinicio }}</td>
+                    <td>{{ c.valor }}</td>
+                    <td>{{ c.juro }}</td>
+                    <td>{{ c.capital }}</td>
+                    <td>{{ c.imposto }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="c('Cross click')">Fechar</button>
+        </div>
+    </ng-template>
+

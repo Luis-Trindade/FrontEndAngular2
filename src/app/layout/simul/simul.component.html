@@ -1,0 +1,132 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Simulação'" [icon]="'fa-bar-chart-o'"></app-page-header>
+    <app-modalerror #modalerror [Header]="errorHeader" [Mensagem]="errorMessage" [isError]="isError"></app-modalerror>
+    <div class="card">
+        <div class="card-header card-header-audaxys">
+            <h4>Simulador</h4>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="card-block">
+            <form class="form-horizontal" novalidate (ngSubmit)="fazSimulacao(simul_form)" #simul_form="ngForm" name="simul_form" id="simul_form" >
+
+                <div class="row field-padding">
+                    <label class="col-sm-2">Data Início</label>
+                    <div class="col-sm-3">
+                        <input type="date" class="form-control" id="cto2dat" name="cto2dat" [ngModel] ="simul.cto2dat | date:'yyyy-MM-dd'" (ngModelChange)="simul.cto2dat = $event" [value]="simul.cto2dat | date:'yyyy-MM-dd'">
+                    </div>
+                    <label class="col-sm-2">Valor</label>
+                    <div class="col-sm-3">
+                        <input type="number" step="0.01" min="0.00" class="form-control" id="ctotcon" name="ctotcon" value="{{ simul.ctotcon }}" required [(ngModel)]="simul.ctotcon"/>
+                    </div>
+                </div>
+
+                <div class="row field-padding">
+                    <label class="col-sm-2">Prazo</label>
+                    <div class="col-sm-3">
+                        <input type="number" min="1" class="form-control" id="ctopraz" name="ctopraz" value="{{ simul.ctopraz }}" required (change)="preencheGrupoRendasAuto()" [(ngModel)]="simul.ctopraz"/>
+                    </div>
+                    <label class="col-sm-2">Período</label>
+                    <div class="col-sm-3">
+                        <input type="number" min="1" max="12" class="form-control" id="ctoper" name="ctoper" value="{{ simul.ctoper }}" required (change)="preencheGrupoRendasAuto()" [(ngModel)]="simul.ctoper"/>
+                    </div>
+                </div>
+
+                <div class="row field-padding">
+                    <label class="col-sm-2">A/P</label>
+                    <div class="col-sm-3">
+                        <label class="radio-inline "><b>Antecipado</b></label>
+                        <input  type="radio" id="ctoap1" name="ctoap" value="A" required="" checked onchange="" [(ngModel)]="simul.ctoap">
+                        <label class="radio-inline "><b>Postecipado</b></label>
+                        <input  type="radio" id="ctoap2" name="ctoap" value="P"  onchange="" [(ngModel)]="simul.ctoap">
+                    </div>
+                    <label class="col-sm-2">IVA</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="ctoiva" name="ctoiva" [(ngModel)]="simul.ctoiva">
+                            <option *ngFor="let i of iva" value="{{ i.codigo }}">{{i.descricao}}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row field-padding">
+                    <label class="col-sm-2">Data 1ª renda</label>
+                    <div class="col-sm-3">
+                        <input type="date" class="form-control" id="cto1ren" name="cto1ren" value="" [ngModel] ="simul.cto1ren | date:'yyyy-MM-dd'" (ngModelChange)="simul.cto1ren = $event" [value]="simul.cto1ren | date:'yyyy-MM-dd'"/>
+                    </div>
+                    <label class="col-sm-2">Juros Diferidos</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="ctojurdif" name="ctojurdif" [(ngModel)]="simul.ctojurdif">
+                            <option value="C" selected >Calcula</option>
+                            <option value="S" >Impõe Valor</option>
+                            <option value="N" >Não tem</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row field-padding">
+                    <label class="col-sm-2">Dado</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" id="ctodado" name="ctodado" [(ngModel)]="simul.ctodado">
+                            <option value="T" selected >Taxa</option>
+                            <option value="R" >Rendas</option>
+                        </select>
+                    </div>
+                    <label class="col-sm-2">Valor Juros Diferidos</label>
+                    <div class="col-sm-3">
+                        <input type="number" step="0.01" min="0.00" class="form-control" id="ctovaljurdif" name="ctovaljurdif" value="0.00" [disabled]="'C' == simul.ctojurdif || 'N' == simul.ctojurdif" [(ngModel)]="simul.ctovaljurdif"/>
+                    </div>
+
+                </div>
+
+                <div class="row field-padding">
+                    <label class="col-sm-2">Taxa</label>
+                    <div class="col-sm-3">
+                        <input type="number" step="0.0001" class="form-control" id="ctotxim" value="" name="ctotxim" [(ngModel)]="simul.ctotxim" [disabled]="'R' == simul.ctodado"/>
+                    </div>
+
+                </div>
+
+                <br>
+                <div class="row">
+                    <div class="col-sm-7">
+                        <div class="panel panel-info">
+                            <div class="panel-heading panel-heading-audaxys">Grupos de Rendas</div>
+                            <!-- /.panel-heading -->
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th name="qtd">Qtd</th>
+                                    <th>Valor</th>
+                                    <th>Factor</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td><input class="form-control" type="number" id="qtd1" name="qtd1" min="1" value="" [(ngModel)]="simul.gruporendas[0].quantidade"/></td>
+                                    <td><input class="form-control" type="number" step="0.01" min="0.00" id="valor1" name="valor1" value="" [(ngModel)]="simul.gruporendas[0].valor"/></td>
+                                    <td><input class="form-control" type="number" step="0.01" min="0.00" id="factor1" name="factor1" value="" [(ngModel)]="simul.gruporendas[0].factor"/></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-control" type="number" id="qtd2" min="1" value="" name="qtd2" [(ngModel)]="simul.gruporendas[1].quantidade"/></td>
+                                    <td><input class="form-control" type="number" step="0.01" min="0.00" id="valor2" name="valor2" value="" [(ngModel)]="simul.gruporendas[1].valor"/></td>
+                                    <td><input class="form-control" type="number" step="0.01" min="0.00" id="factor2" name="factor2" value="" [(ngModel)]="simul.gruporendas[1].factor"/></td>
+                                </tr>
+                                <tr>
+                                    <td><input class="form-control" type="number" id="qtd3" min="1" value="" name="qtd3" [(ngModel)]="simul.gruporendas[2].quantidade"/></td>
+                                    <td><input class="form-control" type="number" step="0.01" min="0.00" id="valor3" name="valor3" value="" [(ngModel)]="simul.gruporendas[2].valor"/></td>
+                                    <td><input class="form-control" type="number" step="0.01" min="0.00" id="factor3" name="factor3" value="" [(ngModel)]="simul.gruporendas[2].factor"/></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="btn-group-vertical" role="group" aria-label="...">
+                        <button type="submit" id="calc_button" class="btn btn-info" [disabled]="simul_form.invalid" (click)="fazSimulacao()">Calcula</button>
+                        <app-modalcashflow [cashflow]="simul.cashflow"></app-modalcashflow>
+                        <button type="button" id="cfgrafico_button" class="btn btn-default" data-toggle="modal"
+                                data-target="#cfgrafico-dialog">Gráfico</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

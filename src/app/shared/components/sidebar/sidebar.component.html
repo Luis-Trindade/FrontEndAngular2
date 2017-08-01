@@ -1,0 +1,33 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <ul class="list-group">
+        <li>
+            <a class="li-nohover" href="#"><i class="fa fa-fw"></i></a>
+        </li>
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' | translate }}
+        </a>
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <span><i class="fa fa-wrench"></i>&nbsp;{{ 'Tools' | translate }}</span><span class="fa arrow"></span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a href="javascript:void(0)"><span>{{ 'Tool 1' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/simul']" [routerLinkActive]="['router-link-active']"><span>{{ 'Simulação Rendas' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)"><span>{{ 'Tool 2' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+        <a [routerLink]="['/clientes']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-users fa-fw"></i>&nbsp;{{ 'Clientes' | translate }}
+        </a>
+        <a href="javascript:void(0)" class="list-group-item"><i class="fa fa-cogs fa-fw"></i>&nbsp;{{ 'Config' | translate }}</a>
+
+    </ul>
+</nav>

@@ -1,0 +1,29 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Clientes'" [icon]="'fa-users'"></app-page-header>
+    <app-modalerror #modalerror [Header]="errorHeader" [Mensagem]="errorMessage" [isError]="isError"></app-modalerror>
+
+    <div class="card">
+        <div class="card-header card-header-audaxys">
+            <h4>Clientes <app-modalcliente [cliente]="cliente" [operacao]='operacao' (notifyParent)="getNotificationFromRegister($event)"></app-modalcliente></h4>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="card-block">
+
+            <div class="ui-widget-header " style="padding:4px 10px;border-bottom: 0 none">
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <input #gb type="text" pInputText size="50" placeholder="Filtro">
+                <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                <p-dropdown [options]="restricao" autoWidth=false (onChange)="forceLoadData($event)"></p-dropdown>
+           </div>
+            <p-dataTable [value]="clientes" [lazy]="true" (onLazyLoad)="loadData($event)"  (onRowClick)="loadPaginaCliente($event)" [rows]="15" [paginator]="true" [totalRecords]="totalRecords" [globalFilter]="gb" #dt>
+                <p-column field="clinum" header="Código" [sortable]="true"></p-column>
+                <p-column field="clinom" header="Nome" [sortable]="true"></p-column>
+                <p-column field="clitlx" header="Email" [sortable]="true"></p-column>
+                <p-column field="clitel" header="Telefone" [sortable]="true"></p-column>
+                <p-column field="clinfis" header="NIF" [sortable]="true"></p-column>
+            </p-dataTable>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+</div>
