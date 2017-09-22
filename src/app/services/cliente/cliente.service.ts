@@ -45,7 +45,7 @@ export class ClienteService {
         });
     }
 
-    setClienteFromJsonPost(jsonClient){
+    setClienteFromJsonPost(jsonClient) {
         const oCliente = new Cliente();
         oCliente.clinom = jsonClient.client.clinom;
         oCliente.cliwww = jsonClient.client.cliwww;

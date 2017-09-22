@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
         if ( valid ) {
             this._authservice.postAuthentication(value.name, value.password)
                 .subscribe(res => {
-                    this.router.navigateByUrl('/dashboard');
+                    this.router.navigate(['/dashboard']);
                 },
                 err => {
                     this.onSubmitError = true;

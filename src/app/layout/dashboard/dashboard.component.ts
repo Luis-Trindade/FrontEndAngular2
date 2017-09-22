@@ -45,6 +45,10 @@ export class DashboardComponent implements OnInit {
         { data: [28, 48, 40, 19, 86, 27, 90], label: 'Contratos' }
     ];
     public isDataAvailable = false;
+    // erros
+    errorHeader: string;
+    errorMessage: string;
+    isError: boolean;
 
     constructor(private _volnegocioservice: VolNegocioService) {
 

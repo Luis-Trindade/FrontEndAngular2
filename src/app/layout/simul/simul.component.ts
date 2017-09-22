@@ -16,7 +16,11 @@ import { ModalErrorComponent } from '../modalerror/modalerror.component';
 export class SimulComponent implements OnInit {
     @ViewChild('modalerror') modalError: ModalErrorComponent;
     simul: Simulacao;
-    private iva: any[] = [];
+    public iva: any[] = [];
+    // erros
+    errorHeader: string;
+    errorMessage: string;
+    isError: boolean;
 
     constructor(private _ivaservice: IvaService,
                 private _simulservice: SimulService) {

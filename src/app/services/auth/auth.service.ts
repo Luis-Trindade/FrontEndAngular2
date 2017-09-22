@@ -14,7 +14,9 @@ export class AuthService {
     constructor(private http: Http) {
     }
 
-    isLoggedIn() { return tokenNotExpired('authToken'); }
+    isLoggedIn() {
+        return tokenNotExpired('authToken');
+    }
 
     postAuthentication( username: string, password: string) {
         const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/login';

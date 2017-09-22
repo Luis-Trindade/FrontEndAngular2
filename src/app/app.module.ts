@@ -7,7 +7,8 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthGuard } from './shared';
+import { AuthGuard } from './services/auth/auth.guard';
+import { AuthService } from './services/auth/auth.service';
 import { AngularWeatherWidgetModule, WeatherApiName } from 'angular-weather-widget';
 
 // AoT requires an exported function for factories
@@ -39,7 +40,7 @@ export function HttpLoaderFactory(http: Http) {
             baseUrl: 'http://api.openweathermap.org/data/2.5'
         })
     ],
-    providers: [AuthGuard],
+    providers: [AuthGuard, AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
