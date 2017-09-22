@@ -3,12 +3,11 @@ import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { Contrato } from '../../data/contra/Contrato';
-import { Config } from '../../data/config/config';
+import { AppConfig } from '../config/app.config';
 
 @Injectable()
 export class ContraService {
-    cfg: Config = new Config();
-    constructor ( private http: Http) {}
+    constructor ( private http: Http, private config: AppConfig) {}
 
     setContratosFromJsonArray(jsonArrayContratos) {
         const osContratos: Contrato[] = [];
@@ -24,7 +23,7 @@ export class ContraService {
     }
 
     getListaContratos(oStart: number, oTamanho: number, aSearch: string, aRestricao: string, aOrdenacao: any[]) {
-        const restBaseUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort();
+        const restBaseUrl = 'http://' + this.config.getConfig('hostBridge') + ':' + this.config.getConfig('portBridge');
         let restUrlContratos = restBaseUrl + '/api/contra/short';
         const countUrlContratos = restBaseUrl + '/api/contra/count';
         let countFilteredUrlContratos = restBaseUrl + '/api/contra/count';

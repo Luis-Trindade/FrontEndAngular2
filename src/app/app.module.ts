@@ -1,5 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { APP_INITIALIZER } from '@angular/core';
+import { AppConfig } from './services/config/app.config';
 import { Http, HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,6 +19,11 @@ export function HttpLoaderFactory(http: Http) {
 //     return new TranslateHttpLoader(http, '/start-angular/SB-Admin-BS4-Angular-4/master/dist/assets/i18n/', '.json');
     return new TranslateHttpLoader(http, '/assets/i18n/', '.json');
 }
+
+export function initConfig(config: AppConfig) {
+    return () => config.load();
+}
+
 @NgModule({
     declarations: [
         AppComponent
@@ -40,7 +47,16 @@ export function HttpLoaderFactory(http: Http) {
             baseUrl: 'http://api.openweathermap.org/data/2.5'
         })
     ],
-    providers: [AuthGuard, AuthService],
+    providers: [
+        AuthGuard,
+        AuthService,
+        AppConfig,
+        { provide: APP_INITIALIZER,
+            useFactory: initConfig,
+            deps: [AppConfig],
+            multi: true
+        }
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

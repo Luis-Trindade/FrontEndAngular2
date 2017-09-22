@@ -2,16 +2,16 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Cliente } from '../../data/cliente/Cliente';
-import { Config } from '../../data/config/config';
 import { Observable } from 'rxjs/Observable';
+import { AppConfig } from '../config/app.config';
 
 @Injectable()
 export class ClienteService {
-    cfg: Config = new Config();
-    constructor ( private http: Http) {}
+    constructor ( private http: Http, private config: AppConfig) {}
 
     postClienteValues(client: Cliente) {
-        const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/clientes';
+        const serviceUrl = 'http://' + this.config.getConfig('hostBridge') + ':' + this.config.getConfig('portBridge') + '/api/clientes';
+
         return this.http.post(serviceUrl, client)
             .map((responseData) => {
                 return this.setClienteFromJsonPost(responseData.json());
@@ -19,7 +19,11 @@ export class ClienteService {
     }
 
     putClienteValues(client: Cliente) {
-        const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/clientes/' + client.clinum;
+        const serviceUrl =
+            'http://' +
+            this.config.getConfig('hostBridge') +
+            ':' + this.config.getConfig('portBridge') +
+            '/api/clientes/' + client.clinum;
         return this.http.put(serviceUrl, client)
             .map((responseData) => {
                 return this.setClienteFromJsonPost(responseData.json());
@@ -27,7 +31,11 @@ export class ClienteService {
     }
 
     deleteCliente(client: number) {
-        const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/clientes/' + client;
+        const serviceUrl =
+            'http://' +
+            this.config.getConfig('hostBridge') +
+            ':' + this.config.getConfig('portBridge') +
+            '/api/clientes/' + client;
         return this.http.delete(serviceUrl)
             .map((responseData) => {
                 return responseData;
@@ -35,7 +43,11 @@ export class ClienteService {
     }
 
     validateNifRemote( clinfis : string ) {
-        const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/clientes/valida_nif?nif=' + clinfis;
+        const serviceUrl =
+            'http://' +
+            this.config.getConfig('hostBridge') +
+            ':' + this.config.getConfig('portBridge') +
+            '/api/clientes/valida_nif?nif=' + clinfis;
         return new Observable(observer => {
             this.http.get(serviceUrl).subscribe((responseData) => {
                 observer.next(null);
@@ -108,7 +120,11 @@ export class ClienteService {
     }
 
     getCliente(clinum: number) {
-        const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/clientes/' + clinum;
+        const serviceUrl =
+            'http://' +
+            this.config.getConfig('hostBridge') +
+            ':' + this.config.getConfig('portBridge') +
+            '/api/clientes/' + clinum;
         return this.http.get(serviceUrl)
             .map((responseData) => {
                 return this.setClienteFromJson(responseData.json());
@@ -116,7 +132,11 @@ export class ClienteService {
     }
 
     getClienteDefaults() {
-        const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/clientes/defaults';
+        const serviceUrl =
+            'http://' +
+            this.config.getConfig('hostBridge') +
+            ':' + this.config.getConfig('portBridge') +
+            '/api/clientes/defaults';
         return this.http.get(serviceUrl)
             .map((responseData) => {
             console.log(JSON.stringify(responseData));
@@ -127,7 +147,11 @@ export class ClienteService {
     }
 
     getListaClientes(oStart: number, oTamanho: number, aSearch: string, aRestricao: string, aOrdenacao: any[]) {
-        const baseUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/clientes/';
+        const baseUrl =
+            'http://' +
+            this.config.getConfig('hostBridge') +
+            ':' + this.config.getConfig('portBridge') +
+            '/api/clientes/';
         let restUrlClientes = baseUrl;
         const countUrlClientes = baseUrl + '/count';
         let countFilteredUrlClientes = baseUrl + '/count';
@@ -160,7 +184,11 @@ export class ClienteService {
     }
 
     getCountListaClientes(globalFilter, restricaoselected) {
-        const baseUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/clientes/';
+        const baseUrl =
+            'http://' +
+            this.config.getConfig('hostBridge') +
+            ':' + this.config.getConfig('portBridge') +
+            '/api/clientes/';
         let countUrlClientes = baseUrl + 'count';
         let queryParams = '?';
         if ( globalFilter ) {

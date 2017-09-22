@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { Simulacao } from '../../data/simul/Simulacao';
-import { Config } from '../../data/config/config';
 import { Observable } from 'rxjs/Observable';
+
+import { AppConfig } from '../config/app.config';
 
 @Injectable()
 export class SimulService {
-    cfg: Config = new Config();
-    constructor ( private http: Http) {}
+    constructor ( private http: Http, private config: AppConfig) {}
 
     postSimulValues(simul: Simulacao) {
-        console.log('VOU ENVIAR: ' + JSON.stringify(simul));
-        const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/simul';
+        const serviceUrl =
+            'http://' +
+            this.config.getConfig('hostBridge') +
+            ':' + this.config.getConfig('portBridge') +
+            '/api/simul';
         return this.http.post(serviceUrl, this.setJsonPostFromSimulacao(simul))
             .map((responseData) => {
                 return this.setSimulacaoFromJsonPost(responseData.json());
@@ -61,7 +64,6 @@ export class SimulService {
         aSimul.ctotxim = jsonSimul.simul.ctotxim;
         jsonSimul.gruposrendas.forEach((item, index) => { aSimul.gruporendas[index] = item; });
         jsonSimul.cashflow.forEach(item => { aSimul.cashflow.push(item); });
-        console.log('RECEBI: ' + JSON.stringify(aSimul));
 
         return aSimul;
     }

@@ -4,14 +4,11 @@ import { tokenNotExpired } from 'angular2-jwt';
 import {Observable} from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
-import { Config } from '../../data/config/config';
+import { AppConfig } from '../config/app.config';
 
 @Injectable()
 export class AuthService {
-    cfg: Config = new Config();
-
-    constructor(private http: Http) {
+    constructor(private http: Http, private config: AppConfig) {
     }
 
     isLoggedIn() {
@@ -19,7 +16,7 @@ export class AuthService {
     }
 
     postAuthentication( username: string, password: string) {
-        const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/login';
+        const serviceUrl = 'http://' + this.config.getConfig('hostBridge') + ':' + this.config.getConfig('portBridge') + '/login';
         return this.http.post(serviceUrl, { name: username, password: password } )
             .map((responseData) => {
                 localStorage.setItem('authToken', responseData.json().token);

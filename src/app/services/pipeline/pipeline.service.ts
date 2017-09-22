@@ -2,19 +2,23 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { Config } from '../../data/config/config';
+import { AppConfig } from '../config/app.config';
 
 @Injectable()
 
 export class PipelineService {
-    cfg: Config = new Config();
-    constructor ( private http: Http) {}
+    constructor ( private http: Http, private config: AppConfig) {}
 
     getChartValues() {
         const doughnutChartLabels: string[] = [];
         const doughnutChartData: number[] = [];
 
-        const serviceUrl = 'http://' + this.cfg.getHost() + ':' + this.cfg.getPort() + '/api/clientes/mapas/pipeline';
+        const serviceUrl =
+            'http://' +
+            this.config.getConfig('hostBridge') +
+            ':' + this.config.getConfig('portBridge') +
+            '/api/clientes/mapas/pipeline';
+
         return this.http.get(serviceUrl)
             .map((responseData) => {
                 return responseData.json();
