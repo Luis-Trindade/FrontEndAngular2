@@ -1,4 +1,4 @@
 {
-    "hostBridge": "apaxsys004",
+    "hostBridge": "localhost",
 	"portBridge": 3000
 }

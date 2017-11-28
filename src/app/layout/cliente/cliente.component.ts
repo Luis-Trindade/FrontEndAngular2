@@ -73,14 +73,8 @@ export class ClienteComponent implements OnInit, OnDestroy {
     }
 
     loadDataContratos( oEvento ) {
-        /** falta fazer o search e filtros **/
-        /*console.log('Carrega Novos Dados');
-        console.log('First ' + oEvento.first);
-        console.log('Rows ' + oEvento.rows);
-        console.log('SortField ' + oEvento.sortField);
-        console.log('SortOrder' + oEvento.sortOrder);
-        console.log('Filters' + oEvento.filters);*/
-        this._contraservice.getListaContratos(oEvento.first, oEvento.rows, '', '--', [])
+        const queryAnd = '&ctocli=' + this.cliente.clinum;
+        this._contraservice.getListaContratos(oEvento.first, oEvento.rows, '', '--', [], queryAnd )
             .subscribe(res => {
                 this.contratos = res;
             }, error => {

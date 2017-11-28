@@ -1,0 +1,88 @@
+<button type="button" class="btn btn-info btn-md" (click)="open(zoomcontrato)">
+    <i class="fa fa-search"></i>
+</button>
+    <ng-template #zoomcontrato let-c="close" let-d="dismiss" >
+        <div class="modal-header modal-header-primary">
+            <h4 class="modal-title">Consulta Contrato</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form class="form-horizontal" novalidate (ngSubmit)="ConsultaContrato(zoomcontrato)" #zoomcontrato="ngForm" name="modal_form" id="modal_form" >
+                <dt>
+                    <div class="row field-padding">
+                        <label class="col-sm-2">Número</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control text-right" id="ctonum" name="ctonum" value="{{ contrato.ctonum }}" [(ngModel)]="contrato.ctonum" />
+                        </div>
+                    </div>
+                </dt>
+                <br>
+                <div class="row field-padding">
+                    <label class="col-sm-2">Número Processo</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control text-right" id="ctoncon" name="ctoncon" value="{{ contrato.ctoncon }}" [(ngModel)]="contrato.ctoncon" />
+                    </div>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control text-right" id="ctosub" name="ctosub" value="{{ contrato.ctosub }}" [(ngModel)]="contrato.ctosub" />
+                    </div>
+                </div>
+                <br>
+                <div class="row field-padding">
+                    <label class="col-sm-2">Tipo Contrato</label>
+                    <div class="col-sm-2">
+                        <select class="form-control" id="ctotipo" name="ctotipo" [(ngModel)]="contrato.ctotipo" (ngModelChange)="updateDescricao($event)">
+                            <option value=""></option>
+                            <option *ngFor="let t of tipocontra" value="{{ t.codigo }}" [selected]="t.codigo ==  contrato.ctotipo">{{t.codigo}}</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="descricao" name="descricao" value="{{ contrato.descricao }}" disabled [(ngModel)]="contrato.descricao" />
+                    </div>
+                </div>
+
+                <div class="row field-padding">
+                    <label class="col-sm-2">Status</label>
+                    <div class="col-sm-4">
+                        <select class="form-control" id="ctostatus" name="ctostatus" [(ngModel)]="contrato.ctostatus">
+                            <option value="">--</option>
+                            <option value="0">Registado</option>
+                            <option value="1">Activo</option>
+                            <option value="2">Alteração Financeira</option>
+                            <option value="3">Rescindido</option>
+                            <option value="4">Rescindido Incumprimento</option>
+                            <option value="5">Terminado</option>
+                            <option value="6">Cancelado</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row field-padding">
+                    <label class="col-sm-2">Cliente</label>
+                    <div class="col-sm-2">
+                        <input type="text" class="form-control text-right" id="ctocli" name="ctocli" value="{{ contrato.ctocli }}" [(ngModel)]="contrato.ctocli"/>
+                    </div>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="clinom" name="clinom" value="{{ contrato.clinom }}" disabled [(ngModel)]="contrato.clinom"/>
+                    </div>
+                </div>
+                <br>
+                <div class="row justify-content-end">
+                    <div class="col-sm-3">{{ mensagemNumeroContratos }}</div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <div class="input-group">
+                <button type="button" id="modal_next" class="btn btn-info" (click)="SeguinteContrato()">Seguinte</button>
+                <button type="button" id="modal_prev" class="btn btn-info" (click)="AnteriorContrato()">Anterior</button>
+            </div>
+            <div class="input-group">
+                <button type="button" id="modal_select" class="btn btn-info" [disabled]="zoomcontrato.invalid" (click)="getContraFromServer()">Filtrar</button>
+                <button type="button" id="modal_filtro" class="btn btn-info" [disabled]="zoomcontrato.invalid" (click)="SeleccionaContrato()">Seleccionar</button>
+                <button type="button" class="btn btn-danger" (click)="c('Cross click')">Cancelar</button>
+            </div>
+        </div>
+    </ng-template>
+

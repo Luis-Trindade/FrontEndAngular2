@@ -12,6 +12,7 @@ const routes: Routes = [
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
             { path: 'clientes', loadChildren: './clientes/clientes.module#ClientesModule' },
             { path: 'simul', loadChildren: './simul/simul.module#SimulModule' },
+            { path: 'simulresc', loadChildren: './simulresc/simulresc.module#SimulRescModule' },
             { path: 'cliente/:id', loadChildren: './cliente/cliente.module#ClienteModule' }
             ]
     }

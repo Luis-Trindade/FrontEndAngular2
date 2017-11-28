@@ -17,12 +17,19 @@ export class ContraService {
             oContrato.cto2dat = oItem.cto2dat;
             oContrato.ctopraz = oItem.ctopraz;
             oContrato.ctotcon = oItem.ctotcon;
+            oContrato.ctoncon = oItem.ctoncon;
+            oContrato.ctosub = oItem.ctosub;
+            oContrato.ctotipo = oItem.ctotipo;
+            oContrato.descricao = oItem.descricao;
+            oContrato.ctostatus = oItem.ctostatus;
+            oContrato.ctocli = oItem.ctocli;
+            oContrato.clinom = oItem.clinom;
             osContratos.push(oContrato);
         });
         return osContratos;
     }
 
-    getListaContratos(oStart: number, oTamanho: number, aSearch: string, aRestricao: string, aOrdenacao: any[]) {
+    getListaContratos(oStart: number, oTamanho: number, aSearch: string, aRestricao: string, aOrdenacao: any[], specificSearch: string) {
         const restBaseUrl = 'http://' + this.config.getConfig('hostBridge') + ':' + this.config.getConfig('portBridge');
         let restUrlContratos = restBaseUrl + '/api/contra/short';
         const countUrlContratos = restBaseUrl + '/api/contra/count';
@@ -46,6 +53,10 @@ export class ContraService {
             queryParams = queryParams + ordem;
         } else {
             queryParams = queryParams + '&order[0][column]=0&order[0][dir]=asc';
+        }
+
+        if ( specificSearch.length > 0 ) {
+            queryParams = queryParams + '&' + specificSearch;
         }
 
         restUrlContratos = restUrlContratos + queryParams;
