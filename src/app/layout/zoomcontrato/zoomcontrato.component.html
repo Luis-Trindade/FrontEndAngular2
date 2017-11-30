@@ -3,7 +3,7 @@
 </button>
     <ng-template #zoomcontrato let-c="close" let-d="dismiss" >
         <div class="modal-header modal-header-primary">
-            <h4 class="modal-title">Consulta Contrato</h4>
+            <h4 class="modal-title">{{ 'Consulta Contrato' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -12,7 +12,7 @@
             <form class="form-horizontal" novalidate (ngSubmit)="ConsultaContrato(zoomcontrato)" #zoomcontrato="ngForm" name="modal_form" id="modal_form" >
                 <dt>
                     <div class="row field-padding">
-                        <label class="col-sm-2">Número</label>
+                        <label class="col-sm-2">{{ 'Número' | translate }}</label>
                         <div class="col-sm-3">
                             <input type="text" class="form-control text-right" id="ctonum" name="ctonum" value="{{ contrato.ctonum }}" [(ngModel)]="contrato.ctonum" />
                         </div>
@@ -20,7 +20,7 @@
                 </dt>
                 <br>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Número Processo</label>
+                    <label class="col-sm-2">{{ 'Número processo' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control text-right" id="ctoncon" name="ctoncon" value="{{ contrato.ctoncon }}" [(ngModel)]="contrato.ctoncon" />
                     </div>
@@ -30,7 +30,7 @@
                 </div>
                 <br>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Tipo Contrato</label>
+                    <label class="col-sm-2">{{ 'Tipo Contrato' | translate }}</label>
                     <div class="col-sm-2">
                         <select class="form-control" id="ctotipo" name="ctotipo" [(ngModel)]="contrato.ctotipo" (ngModelChange)="updateDescricao($event)">
                             <option value=""></option>
@@ -43,23 +43,23 @@
                 </div>
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">Status</label>
+                    <label class="col-sm-2">{{ 'Status' | translate }}</label>
                     <div class="col-sm-4">
                         <select class="form-control" id="ctostatus" name="ctostatus" [(ngModel)]="contrato.ctostatus">
                             <option value="">--</option>
-                            <option value="0">Registado</option>
-                            <option value="1">Activo</option>
-                            <option value="2">Alteração Financeira</option>
-                            <option value="3">Rescindido</option>
-                            <option value="4">Rescindido Incumprimento</option>
-                            <option value="5">Terminado</option>
-                            <option value="6">Cancelado</option>
+                            <option value="0">{{ 'Registado' | translate }}</option>
+                            <option value="1">{{ 'Activo' | translate }}</option>
+                            <option value="2">{{ 'Alteração Financeira' | translate }}</option>
+                            <option value="3">{{ 'Rescindido' | translate }}</option>
+                            <option value="4">{{ 'Rescindido Incumprimento' | translate }}</option>
+                            <option value="5">{{ 'Terminado' | translate }}</option>
+                            <option value="6">{{ 'Cancelado' | translate }}</option>
                         </select>
                     </div>
                 </div>
                 <br>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Cliente</label>
+                    <label class="col-sm-2">{{ 'Cliente' | translate }}</label>
                     <div class="col-sm-2">
                         <input type="text" class="form-control text-right" id="ctocli" name="ctocli" value="{{ contrato.ctocli }}" [(ngModel)]="contrato.ctocli"/>
                     </div>
@@ -75,13 +75,13 @@
         </div>
         <div class="modal-footer">
             <div class="input-group">
-                <button type="button" id="modal_next" class="btn btn-info" (click)="SeguinteContrato()">Seguinte</button>
-                <button type="button" id="modal_prev" class="btn btn-info" (click)="AnteriorContrato()">Anterior</button>
+                <button type="button" id="modal_next" class="btn btn-info" (click)="SeguinteContrato()">{{ 'Seguinte' | translate }}</button>
+                <button type="button" id="modal_prev" class="btn btn-info" (click)="AnteriorContrato()">{{ 'Anterior' | translate }}</button>
             </div>
             <div class="input-group">
-                <button type="button" id="modal_select" class="btn btn-info" [disabled]="zoomcontrato.invalid" (click)="getContraFromServer()">Filtrar</button>
-                <button type="button" id="modal_filtro" class="btn btn-info" [disabled]="zoomcontrato.invalid" (click)="SeleccionaContrato()">Seleccionar</button>
-                <button type="button" class="btn btn-danger" (click)="c('Cross click')">Cancelar</button>
+                <button type="button" id="modal_select" class="btn btn-info" [disabled]="zoomcontrato.invalid" (click)="getContraFromServer()">{{ 'Filtrar' | translate }}</button>
+                <button type="button" id="modal_filtro" class="btn btn-info" [disabled]="zoomcontrato.invalid" (click)="SeleccionaContrato()">{{ 'Seleccionar' | translate }}</button>
+                <button type="button" class="btn btn-danger" (click)="c('Cross click')">{{ 'Cancelar' | translate }}</button>
             </div>
         </div>
     </ng-template>

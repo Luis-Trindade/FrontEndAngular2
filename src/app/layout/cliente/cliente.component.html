@@ -1,11 +1,12 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Clientes'" [secondheading]="cliente.clinum" [icon]="'fa-users'"></app-page-header>
+    <app-page-header [heading]="'Clientes'" [secondheading]="cliente.clinum" [icon]="'fa-users'" [headingUrl]="'/clientes'"></app-page-header>
     <app-modalerror #modalerror [Header]="errorHeader" [Mensagem]="errorMessage" [isError]="isError"></app-modalerror>
+    <app-modalconfirm #modalconfirm [Mensagem]="confirmMessage" (notifyParent)="getNotificationFromConfirm($event)"></app-modalconfirm>
     <div class="row ">
     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
     <div class="card">
         <div class="card-header card-header-audaxys" style="min-height: 70px">
-            <h4>Cliente <app-modalcliente [cliente]="cliente" [operacao]="operacao" (notifyParent)="getNotificationFromModify($event)"></app-modalcliente>
+            <h4>{{ 'Cliente' | translate }} <app-modalcliente [cliente]="cliente" [operacao]="operacao" (notifyParent)="getNotificationFromModify($event)"></app-modalcliente>
 
                 <div ngbDropdown class="d-inline-block">
                     <i  style = "color: black;" ngbDropdownToggle>
@@ -13,9 +14,9 @@
                     </i>
                    <!-- <button class="fa fa-caret-down"  ngbDropdownToggle></button>-->
                     <div class="dropdown-menu" >
-                        <button class="dropdown-item">Opção 1</button>
-                        <button class="dropdown-item">Etc</button>
-                        <button class="dropdown-item" (click)="deleteCliente()"><i class="fa fa-trash"></i>Delete</button>
+                        <button class="dropdown-item">{{ 'Opção 1' | translate }}</button>
+                        <button class="dropdown-item">{{ 'Etc' | translate }}</button>
+                        <button class="dropdown-item" (click)="deleteCliente()"><i class="fa fa-trash"></i>{{ 'Delete' | translate }}</button>
                     </div>
                 </div>
             </h4>
@@ -25,7 +26,7 @@
 
                 <div class="row">
                     <div class="col-md-4 col-lg-4">
-                        <p><strong>Nome</strong></p>
+                        <p><strong>{{ 'Nome' | translate }}</strong></p>
                     </div>
                     <div class="col-md-8 col-lg-8">
                         <p>{{ cliente.clinom }}</p>
@@ -33,7 +34,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-lg-4">
-                        <p><strong>Web</strong></p>
+                        <p><strong>{{ 'Web' | translate }}</strong></p>
                     </div>
                     <div class="col-md-8 col-lg-8 col-sm-8 col-xs-8">
                         <a class="dont-break-out" href="{{ cliente.cliwww }}">{{ cliente.cliwww }}</a>
@@ -41,7 +42,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-lg-4">
-                        <p><strong>Email</strong></p>
+                        <p><strong>{{ 'Email' | translate }}</strong></p>
                     </div>
                     <div class="col-md-8 col-lg-8">
                         <a class="dont-break-out" href="mailto:{{ cliente.clitlx }}">{{ cliente.clitlx }}</a>
@@ -49,7 +50,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-lg-4">
-                        <p><strong>Telefone</strong></p>
+                        <p><strong>{{ 'Telefone' | translate }}</strong></p>
                     </div>
                     <div class="col-md-8 col-lg-8">
                         <p>{{ cliente.clitel }}</p>
@@ -62,7 +63,7 @@
 <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
     <div class="card">
         <div class="card-header card-header-audaxys" style="min-height: 71px">
-            <h4>Localização</h4>
+            <h4>{{ 'Localização' | translate }}</h4>
         </div>
         <div class="card-block embed-responsive embed-responsive-16by9" >
             <iframe class="embed-responsive-item"
@@ -81,14 +82,14 @@
     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
         <div class="card">
             <div class="card-header card-header-audaxys" >
-                <h4>Contratos</h4>
+                <h4>{{ 'Contratos' | translate }}</h4>
             </div>
             <div class="card-block" >
                 <p-dataTable [value]="contratos" [lazy]="true" (onLazyLoad)="loadDataContratos($event)" [rows]="5" [paginator]="true" [totalRecords]="100" #dt>
-                    <p-column field="ctonum" header="Número"></p-column>
-                    <p-column field="cto2dat" header="Início"></p-column>
-                    <p-column field="ctopraz" header="Prazo"></p-column>
-                    <p-column field="ctotcon" header="Vincendo"></p-column>
+                    <p-column field="ctonum" header="{{ 'Número' | translate }}"></p-column>
+                    <p-column field="cto2dat" header="{{ 'Início' | translate }}"></p-column>
+                    <p-column field="ctopraz" header="{{ 'Prazo' | translate }}"></p-column>
+                    <p-column field="ctotcon" header="{{ 'Vincendo' | translate }}"></p-column>
                 </p-dataTable>
 
             </div>
@@ -98,7 +99,7 @@
     <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6">
         <div class="card">
             <div class="card-header card-header-audaxys">
-                <h4>Pipeline por tipo de proposta</h4>
+                <h4>{{ 'Pipeline por tipo de proposta' | translate }}</h4>
             </div>
             <div class="card-block" >
                 <div *ngIf="isDataAvailable">

@@ -1,0 +1,15 @@
+<ng-template #modalconfirm let-c="close" let-d="dismiss" >
+    <div class="modal-header modal-header-primary">
+        <h4 class="modal-title" id="errmsg-header">{{ 'Confirma?' | translate }}</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p id="errmsg-usermsg">{{ Mensagem }}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" id="errmsg-button" class="btn btn-success" (click)="clickedOK()">{{ 'Sim' | translate }}</button>
+        <button type="button" id="errmsg-cancel" class="btn btn-danger" (click)="clickedCancel()">{{ 'Não' | translate }}</button>
+    </div>
+</ng-template>

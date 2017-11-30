@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ModalErrorComponent } from './modalerror.component';
+import { ModalConfirmComponent } from './modalconfirm.component';
 import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
     imports:        [ CommonModule,
                         TranslateModule ],
-    declarations:   [ ModalErrorComponent ],
-    exports:        [ ModalErrorComponent ]
+    declarations:   [ ModalConfirmComponent ],
+    exports:        [ ModalConfirmComponent ]
 })
-export class ModalErrorModule { }
+export class ModalConfirmModule { }

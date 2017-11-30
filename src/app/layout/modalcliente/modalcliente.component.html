@@ -1,9 +1,10 @@
 <button type="button" class="btn rounded-circle btn-success btn-sm" (click)="open(modalcliente)">
-    <i class="fa fa-plus"></i>
+    <i *ngIf="operacao == 'Inserir'" class="fa fa-plus"></i>
+    <i *ngIf="operacao == 'Modificar'" class="fa fa-pencil"></i>
 </button>
     <ng-template #modalcliente let-c="close" let-d="dismiss" >
         <div class="modal-header modal-header-primary">
-            <h4 class="modal-title">{{ operacao }} Cliente</h4>
+            <h4 class="modal-title">{{ operacao }} {{ 'Cliente' | translate }}</h4>
             <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -11,49 +12,49 @@
         <div class="modal-body">
             <form class="form-horizontal" novalidate (ngSubmit)="RegModCliente(login_form)" #login_form="ngForm" name="modal_form" id="modal_form" >
             <div class="row field-padding">
-                    <label class="col-sm-2">Código</label>
+                    <label class="col-sm-2">{{ 'Código' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="clinum" name="clinum" value="{{ cliente.clinum }}" disabled [(ngModel)]="cliente.clinum"/>
                     </div>
-                    <label class="radio-inline col-sm-1"><b>Empresa</b></label>
+                    <label class="radio-inline col-sm-1"><b>{{ 'Empresa' | translate }}</b></label>
                     <input class="col-sm-2" type="radio" name="clitcli" value="E" required="" [checked]="'E' == cliente.clitcli" [(ngModel)]="cliente.clitcli">
-                    <label class="radio-inline col-sm-1"><b>Particular</b></label>
+                    <label class="radio-inline col-sm-1"><b>{{ 'Particular' | translate }}</b></label>
                     <input class="col-sm-2" type="radio" name="clitcli" value="P" [checked]="'P' == cliente.clitcli" [(ngModel)]="cliente.clitcli">
                 </div>
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">Nacionalidade</label>
+                    <label class="col-sm-2">{{ 'Nacionalidade' | translate }}</label>
                     <div class="col-sm-3">
 
                         <select class="form-control" id="nacionalidade" name="clipais" [(ngModel)]="cliente.clipais">
                             <option *ngFor="let p of pais" value="{{ p.codigo }}" [selected]="p.codigo ==  cliente.clipais">{{p.nomepais}}</option>
                         </select>
                     </div>
-                    <label class="col-sm-3">NIF</label>
+                    <label class="col-sm-3">{{ 'NIF' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="text" class="form-control" id="nif" name="clinfis" validaNif="clinfis" #clinfis="ngModel" value="{{ cliente.clinfis }}" [(ngModel)]="cliente.clinfis" required/>
                         <div *ngIf="clinfis.errors && clinfis.touched" class="error">
                             <div *ngIf="clinfis.errors.required && clinfis.touched" class="error">
-                                Campo obrigatório
+                                {{ 'Campo obrigatório' | translate }}
                             </div>
                             <div *ngIf="clinfis.errors && clinfis.touched" class="error">
-                                NIF tem de ter um formato válido
+                                {{ 'NIF tem de ter um formato válido' | translate }}
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">Nome</label>
+                    <label class="col-sm-2">{{ 'Nome' | translate }}</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" #clinom="ngModel" id="nome" name="clinom" value="{{ cliente.clinom }}" required [(ngModel)]="cliente.clinom"/>
                         <div *ngIf="clinom.errors?.required && clinom.touched" class="error">
-                            Campo obrigatório
+                            {{ 'Campo obrigatório' | translate }}
                         </div>
                     </div>
                 </div>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Morada</label>
+                    <label class="col-sm-2">{{ 'Morada' | translate }}</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="morada" name="climor" value="{{ cliente.climor }}" [(ngModel)]="cliente.climor"/>
                     </div>
@@ -79,29 +80,29 @@
                 </div>
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">Email</label>
+                    <label class="col-sm-2">{{ 'Email' | translate }}</label>
                     <div class="col-sm-9">
                         <input type="email" class="form-control" id="email" name="clitlx" #clitlx="ngModel" email value="{{ cliente.clitlx }}" [(ngModel)]="cliente.clitlx"/>
                         <div *ngIf="clitlx.errors && clitlx.touched" class="error">
-                            Email tem de ter um formato válido
+                            {{ 'Email tem de ter um formato válido' | translate }}
                         </div>
                     </div>
                 </div>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Website</label>
+                    <label class="col-sm-2">{{ 'Website' | translate }}</label>
                     <div class="col-sm-9 ">
                         <input type="text" [disabled]="'P' == cliente.clitcli" class="form-control" id="website" #cliwww="ngModel" pattern="https?://.+" name="cliwww" value="{{ cliente.cliwww }}" [(ngModel)]="cliente.cliwww"/>
                         <div *ngIf="cliwww.errors && cliwww.touched" class="error">
-                            Website tem de ter um formato válido
+                            {{ 'Website tem de ter um formato válido' | translate }}
                         </div>
                     </div>
                 </div>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Telefone</label>
+                    <label class="col-sm-2">{{ 'Telefone' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="text"  class="form-control" id="telefone" name="clitel" value="{{ cliente.clitel }}" [(ngModel)]="cliente.clitel"/>
                     </div>
-                    <label class="col-sm-3">Nascido a</label>
+                    <label class="col-sm-3">{{ 'Nascido a' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="date" class="form-control" id="datanascimento" name="datanascimento" [ngModel] ="cliente.restocliente.datanascimento | date:'yyyy-MM-dd'" (ngModelChange)="cliente.restocliente.datanascimento = $event" [value]="cliente.restocliente.datanascimento | date:'yyyy-MM-dd'">
                     </div>
@@ -110,16 +111,16 @@
                 <div class="row field-padding">
                     <div class="col-sm-2"></div>
 
-                    <label style="margin-left:10px" class="checkbox-inline col-sm-2" id="cliehsucursal"><input type="checkbox" value="S" name="cliehsucursal" [checked]="'S' == cliente.cliehsucursal" [(ngModel)]="cliente.cliehsucursal">Sucursal</label>
-                    <label class="checkbox-inline col-sm-2" id="cliivacaixa"><input type="checkbox" value="S" name="cliivacaixa" [checked]="'S' == cliente.cliivacaixa" [(ngModel)]="cliente.cliivacaixa">Iva caixa</label>
-                    <label class="checkbox-inline col-sm-2" id="clibanco"><input type="checkbox" value="S" name="clibanco" [checked]="'S' == cliente.clibanco" [(ngModel)]="cliente.clibanco">Cli Banco</label>
+                    <label style="margin-left:10px" class="checkbox-inline col-sm-2" id="cliehsucursal"><input type="checkbox" value="S" name="cliehsucursal" [checked]="'S' == cliente.cliehsucursal" [(ngModel)]="cliente.cliehsucursal">{{ 'Sucursal' | translate }}</label>
+                    <label class="checkbox-inline col-sm-2" id="cliivacaixa"><input type="checkbox" value="S" name="cliivacaixa" [checked]="'S' == cliente.cliivacaixa" [(ngModel)]="cliente.cliivacaixa">{{ 'Iva caixa' | translate }}</label>
+                    <label class="checkbox-inline col-sm-2" id="clibanco"><input type="checkbox" value="S" name="clibanco" [checked]="'S' == cliente.clibanco" [(ngModel)]="cliente.clibanco">{{ 'Cli Banco' | translate }}</label>
 
                 </div>
             </form>
         </div>
         <div class="modal-footer">
-            <button type="button" id="modal_submit" class="btn btn-info" [disabled]="login_form.invalid" (click)="RegModCliente()">Guardar</button>
-            <button type="button" class="btn btn-danger" (click)="c('Cross click')">Cancelar</button>
+            <button type="button" id="modal_submit" class="btn btn-info" [disabled]="login_form.invalid" (click)="RegModCliente()">{{ 'Guardar' | translate }}</button>
+            <button type="button" class="btn btn-danger" (click)="c('Cross click')">{{ 'Cancelar' | translate }}</button>
         </div>
     </ng-template>
 

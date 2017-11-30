@@ -3,74 +3,74 @@
     <app-modalerror #modalerror [Header]="errorHeader" [Mensagem]="errorMessage" [isError]="isError"></app-modalerror>
     <div class="card">
         <div class="card-header card-header-audaxys">
-            <h4>Simulador</h4>
+            <h4>{{ 'Simulador' | translate }}</h4>
         </div>
         <!-- /.panel-heading -->
         <div class="card-block">
             <form class="form-horizontal" novalidate (ngSubmit)="fazSimulacao()" #simul_form="ngForm" name="simul_form" id="simul_form" >
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">Data Início</label>
+                    <label class="col-sm-2">{{ 'Data Início' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="date" class="form-control" id="cto2dat" name="cto2dat" [ngModel] ="simul.cto2dat | date:'yyyy-MM-dd'" (ngModelChange)="simul.cto2dat = $event" [value]="simul.cto2dat | date:'yyyy-MM-dd'">
                     </div>
-                    <label class="col-sm-2">Valor</label>
+                    <label class="col-sm-2">{{ 'Valor' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="number" step="0.01" min="0.00" class="form-control" id="ctotcon" name="ctotcon" value="{{ simul.ctotcon }}" required [(ngModel)]="simul.ctotcon"/>
                     </div>
                 </div>
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">Prazo</label>
+                    <label class="col-sm-2">{{ 'Prazo' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="number" min="1" class="form-control" id="ctopraz" name="ctopraz" value="{{ simul.ctopraz }}" required (change)="preencheGrupoRendasAuto()" [(ngModel)]="simul.ctopraz"/>
                     </div>
-                    <label class="col-sm-2">Período</label>
+                    <label class="col-sm-2">{{ 'Período' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="number" min="1" max="12" class="form-control" id="ctoper" name="ctoper" value="{{ simul.ctoper }}" required (change)="preencheGrupoRendasAuto()" [(ngModel)]="simul.ctoper"/>
                     </div>
                 </div>
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">A/P</label>
+                    <label class="col-sm-2">{{ 'A/P' | translate }}</label>
                     <div class="col-sm-3">
-                        <label class="radio-inline "><b>Antecipado</b></label>
+                        <label class="radio-inline "><b>{{ 'Antecipado' | translate }}</b></label>
                         <input  type="radio" id="ctoap1" name="ctoap" value="A" required="" checked onchange="" [(ngModel)]="simul.ctoap">
-                        <label class="radio-inline "><b>Postecipado</b></label>
+                        <label class="radio-inline "><b>{{ 'Postecipado' | translate }}</b></label>
                         <input  type="radio" id="ctoap2" name="ctoap" value="P"  onchange="" [(ngModel)]="simul.ctoap">
                     </div>
-                    <label class="col-sm-2">IVA</label>
+                    <label class="col-sm-2">{{ 'IVA' | translate }}</label>
                     <div class="col-sm-3">
                         <select class="form-control" id="ctoiva" name="ctoiva" [(ngModel)]="simul.ctoiva">
-                            <option *ngFor="let i of iva" value="{{ i.codigo }}">{{i.descricao}}</option>
+                            <option *ngFor="let i of iva" value="{{ i.codigo }}">{{i.descricao | translate}}</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">Data 1ª renda</label>
+                    <label class="col-sm-2">{{ 'Data 1ª renda' | translate}}</label>
                     <div class="col-sm-3">
                         <input type="date" class="form-control" id="cto1ren" name="cto1ren" value="" [ngModel] ="simul.cto1ren | date:'yyyy-MM-dd'" (ngModelChange)="simul.cto1ren = $event" [value]="simul.cto1ren | date:'yyyy-MM-dd'"/>
                     </div>
-                    <label class="col-sm-2">Juros Diferidos</label>
+                    <label class="col-sm-2">{{ 'Juros Diferidos' | translate}}</label>
                     <div class="col-sm-3">
                         <select class="form-control" id="ctojurdif" name="ctojurdif" [(ngModel)]="simul.ctojurdif">
-                            <option value="C" selected >Calcula</option>
-                            <option value="S" >Impõe Valor</option>
-                            <option value="N" >Não tem</option>
+                            <option value="C" selected >{{ 'Calcula' | translate }}</option>
+                            <option value="S" >{{ 'Impõe Valor' | translate }}</option>
+                            <option value="N" >{{ 'Não tem' | translate }}</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">Dado</label>
+                    <label class="col-sm-2">{{ 'Dado' | translate }}</label>
                     <div class="col-sm-3">
                         <select class="form-control" id="ctodado" name="ctodado" [(ngModel)]="simul.ctodado">
-                            <option value="T" selected >Taxa</option>
-                            <option value="R" >Rendas</option>
+                            <option value="T" selected >{{ 'Taxa' | translate }}</option>
+                            <option value="R" >{{ 'Rendas' | translate }}</option>
                         </select>
                     </div>
-                    <label class="col-sm-2">Valor Juros Diferidos</label>
+                    <label class="col-sm-2">{{ 'Valor Juros Diferidos' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="number" step="0.01" min="0.00" class="form-control" id="ctovaljurdif" name="ctovaljurdif" value="0.00" [disabled]="'C' == simul.ctojurdif || 'N' == simul.ctojurdif" [(ngModel)]="simul.ctovaljurdif"/>
                     </div>
@@ -78,7 +78,7 @@
                 </div>
 
                 <div class="row field-padding">
-                    <label class="col-sm-2">Taxa</label>
+                    <label class="col-sm-2">{{ 'Taxa' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="number" step="0.0001" class="form-control" id="ctotxim" value="" name="ctotxim" [(ngModel)]="simul.ctotxim" [disabled]="'R' == simul.ctodado"/>
                     </div>
@@ -89,14 +89,14 @@
                 <div class="row">
                     <div class="col-sm-7">
                         <div class="panel panel-info">
-                            <div class="panel-heading panel-heading-audaxys">Grupos de Rendas</div>
+                            <div class="panel-heading panel-heading-audaxys">{{ 'Grupos de Rendas' | translate }}</div>
                             <!-- /.panel-heading -->
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th name="qtd">Qtd</th>
-                                    <th>Valor</th>
-                                    <th>Factor</th>
+                                    <th name="qtd">{{ 'Qtd' | translate }}</th>
+                                    <th>{{ 'Valor' | translate }}</th>
+                                    <th>{{ 'Factor' | translate }}</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -120,10 +120,10 @@
                         </div>
                     </div>
                     <div class="btn-group-vertical" role="group" aria-label="...">
-                        <button type="submit" id="calc_button" class="btn btn-info" [disabled]="simul_form.invalid" (click)="fazSimulacao()">Calcula</button>
+                        <button type="submit" id="calc_button" class="btn btn-info" [disabled]="simul_form.invalid" (click)="fazSimulacao()">{{ 'Calcula' | translate }}</button>
                         <app-modalcashflow [cashflow]="simul.cashflow"></app-modalcashflow>
                         <button type="button" id="cfgrafico_button" class="btn btn-default" data-toggle="modal"
-                                data-target="#cfgrafico-dialog">Gráfico</button>
+                                data-target="#cfgrafico-dialog">{{ 'Gráfico' | translate }}</button>
                     </div>
                 </div>
             </form>

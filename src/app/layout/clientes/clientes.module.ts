@@ -8,6 +8,7 @@ import { ClientesComponent } from './clientes.component';
 import { PageHeaderModule } from '../../shared';
 import { ModalClienteModule } from '../modalcliente/modalcliente.module';
 import { ModalErrorModule } from '../modalerror/modalerror.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ModalErrorModule } from '../modalerror/modalerror.module';
       PageHeaderModule,
       InputTextModule, DataTableModule, ButtonModule, DialogModule, DropdownModule,
       ClientesRoutingModule,
+      TranslateModule,
       ModalClienteModule,
       ModalErrorModule
   ],

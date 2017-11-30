@@ -12,7 +12,7 @@
 
     <div class="card ">
         <div class="card-header card-header-audaxys">
-            <h4>Volume de negócio</h4>
+            <h4>{{ 'Volume de negócio' | translate }}</h4>
         </div>
         <div class="card-block">
             <div *ngIf="isDataAvailable">
@@ -23,7 +23,7 @@
     </div>
     <div class="card ">
         <div class="card-header card-header-audaxys">
-            <h4>Condições Climáticas</h4>
+            <h4>{{ 'Condições Climáticas' | translate }}</h4>
         </div>
         <div class="card-block">
             <weather-widget [settings]="settings"></weather-widget>

@@ -5,6 +5,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SimulRoutingModule } from './simul-routing.module';
 import { SimulComponent } from './simul.component';
 import { PageHeaderModule } from '../../shared';
+import { TranslateModule } from '@ngx-translate/core';
 import { ModalErrorModule } from '../modalerror/modalerror.module';
 import { ModalCashflowModule } from '../modalcashflow/modalcashflow.module';
 
@@ -16,6 +17,7 @@ import { ModalCashflowModule } from '../modalcashflow/modalcashflow.module';
         FormsModule,
         ModalErrorModule,
         ModalCashflowModule,
+        TranslateModule,
         PageHeaderModule
   ],
   declarations: [SimulComponent]

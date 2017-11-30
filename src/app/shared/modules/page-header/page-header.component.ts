@@ -9,4 +9,5 @@ export class PageHeaderComponent {
     @Input() heading: string;
     @Input() icon: string;
     @Input() secondheading: string;
+    @Input() headingUrl: string;
 }

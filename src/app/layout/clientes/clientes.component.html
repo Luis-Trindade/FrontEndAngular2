@@ -4,7 +4,7 @@
 
     <div class="card">
         <div class="card-header card-header-audaxys">
-            <h4>Clientes <app-modalcliente [cliente]="cliente" [operacao]='operacao' (notifyParent)="getNotificationFromRegister($event)"></app-modalcliente></h4>
+            <h4>{{ 'Clientes' | translate }} <app-modalcliente [cliente]="cliente" [operacao]='operacao' (notifyParent)="getNotificationFromRegister($event)"></app-modalcliente></h4>
         </div>
         <!-- /.panel-heading -->
         <div class="card-block">
@@ -16,11 +16,11 @@
                 <p-dropdown [options]="restricao" autoWidth=false (onChange)="forceLoadData($event)"></p-dropdown>
            </div>
             <p-dataTable [value]="clientes" [lazy]="true" (onLazyLoad)="loadData($event)"  (onRowClick)="loadPaginaCliente($event)" [rows]="15" [paginator]="true" [totalRecords]="totalRecords" [globalFilter]="gb" #dt>
-                <p-column field="clinum" header="Código" [sortable]="true"></p-column>
-                <p-column field="clinom" header="Nome" [sortable]="true"></p-column>
-                <p-column field="clitlx" header="Email" [sortable]="true"></p-column>
-                <p-column field="clitel" header="Telefone" [sortable]="true"></p-column>
-                <p-column field="clinfis" header="NIF" [sortable]="true"></p-column>
+                <p-column field="clinum" header="{{ 'Código' | translate }}" [sortable]="true"></p-column>
+                <p-column field="clinom" header="{{ 'Nome' | translate }}" [sortable]="true"></p-column>
+                <p-column field="clitlx" header="{{ 'Email' | translate }}" [sortable]="true"></p-column>
+                <p-column field="clitel" header="{{ 'Telefone' | translate }}" [sortable]="true"></p-column>
+                <p-column field="clinfis" header="{{ 'NIF' | translate }}" [sortable]="true"></p-column>
             </p-dataTable>
             <!-- /.table-responsive -->
         </div>

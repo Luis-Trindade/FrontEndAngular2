@@ -2,18 +2,17 @@ import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angu
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-    selector: 'app-modalerror',
-    templateUrl: './modalerror.component.html',
-    styleUrls: ['./modalerror.component.scss']
+    selector: 'app-modalconfirm',
+    templateUrl: './modalconfirm.component.html',
+    styleUrls: ['./modalconfirm.component.scss']
 })
 
-export class ModalErrorComponent implements OnInit {
-    @ViewChild('modalerror') modalError: ModalErrorComponent;
-    @Input() Header: string;
+export class ModalConfirmComponent implements OnInit {
+    @ViewChild('modalconfirm') modalConfirm: ModalConfirmComponent;
     @Input() Mensagem: string;
-    @Input() isError: boolean;
     @Output() notifyParent: EventEmitter<any> = new EventEmitter();
     isHidden: boolean;
+
 
     closeResult: string;
     modalJanela: any;
@@ -24,11 +23,9 @@ export class ModalErrorComponent implements OnInit {
         this.isHidden = true;
     }
 
-    open(isError: boolean, oHeader: string, aMsg: string) {
-        this.isError = isError;
-        this.Header = oHeader;
+    open(aMsg: string) {
         this.Mensagem = aMsg;
-        this.modalJanela = this.modalService.open(this.modalError, { size: 'sm' } );
+        this.modalJanela = this.modalService.open(this.modalConfirm, { size: 'sm' } );
         this.modalJanela.result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
         }, (reason) => {
@@ -47,7 +44,7 @@ export class ModalErrorComponent implements OnInit {
     }
 
     notify(result: boolean) {
-        this.notifyParent.emit({ isOk: result });
+        this.notifyParent.emit(result );
     }
 
     clickedOK() {

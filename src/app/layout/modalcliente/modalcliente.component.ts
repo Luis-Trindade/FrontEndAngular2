@@ -49,7 +49,7 @@ export class ModalClienteComponent implements OnInit {
                 });
         }
 
-        this.modalCliente = this  .modalService.open(content, { size: 'lg' } );
+        this.modalCliente = this.modalService.open(content, { size: 'lg' } );
         this.modalCliente.result.then((result) => {
             this.closeResult = `Closed with: ${result}`;
         }, (reason) => {

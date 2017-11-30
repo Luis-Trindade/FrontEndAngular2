@@ -3,14 +3,14 @@
     <app-modalerror #modalerror [Header]="errorHeader" [Mensagem]="errorMessage" [isError]="isError"></app-modalerror>
     <div class="card">
         <div class="card-header card-header-audaxys">
-            <h4>Simulação Rescisão</h4>
+            <h4>{{ 'Simulação Rescisão' | translate }}</h4>
         </div>
         <!-- /.panel-heading -->
         <div class="card-block">
             <form class="form-horizontal" novalidate (ngSubmit)="fazSimulacaoRescisao()" #simulresc_form="ngForm" name="simulresc_form" id="simulresc_form" >
                 <dt>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Contrato</label>
+                    <label class="col-sm-2">{{ 'Contrato' | translate }}</label>
                     <div class="col-sm-3">
                         <div class="input-group">
                             <input type="number" class="form-control text-right" id="contrato" name="contrato" value="{{ simul.contrato }}" required [(ngModel)]="simul.contrato"/>
@@ -18,7 +18,7 @@
                         </div>
                     </div>
 
-                    <label class="col-sm-2">Data rescisão</label>
+                    <label class="col-sm-2">{{ 'Data rescisão' | translate }}</label>
                     <div class="col-sm-3">
                         <input type="date" class="form-control text-right" id="data" name="data" [ngModel] ="simul.data | date:'yyyy-MM-dd'" (ngModelChange)="simul.data = $event" [value]="simul.data | date:'yyyy-MM-dd'">
                     </div>
@@ -26,51 +26,51 @@
                 </dt>
                 <br>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Produto</label>
+                    <label class="col-sm-2">{{ 'Produto' | translate }}</label>
                     <div class="col-sm-8">
                         <input disabled type="string" class="form-control" id="ctotipo" name="ctotipo" value="{{ simul.ctotipo }}" required [(ngModel)]="simul.ctotipo"/>
                     </div>
                 </div>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Cliente</label>
+                    <label class="col-sm-2">{{ 'Cliente' | translate }}</label>
                     <div class="col-sm-8">
                         <input disabled type="string" class="form-control" id="cliente" name="cliente" value="{{ simul.cliente }}" required [(ngModel)]="simul.cliente"/>
                     </div>
                 </div>
                 <br>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Valor Rescisão</label>
+                    <label class="col-sm-2">{{ 'Valor Rescisão' | translate }}</label>
                     <div class="col-sm-3">
                         <input disabled type="number" class="form-control text-right" id="rescisaocomiva" name="rescisaocomiva" value="{{ simul.rescisaocomiva }}" required [(ngModel)]="simul.rescisaocomiva"/>
                     </div>
-                    <label class="col-sm-2">Próxima renda</label>
+                    <label class="col-sm-2">{{ 'Próxima renda' | translate }}</label>
                     <div class="col-sm-3">
                         <input disabled type="date" class="form-control text-right" id="proximarenda" name="proximarenda" [ngModel] ="simul.proximarenda | date:'yyyy-MM-dd'" (ngModelChange)="simul.proximarenda = $event" [value]="simul.proximarenda | date:'yyyy-MM-dd'">
                     </div>
                 </div>
                 <br>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Débitos atraso</label>
+                    <label class="col-sm-2">{{ 'Débitos atraso' | translate }}</label>
                     <div class="col-sm-3">
                         <input disabled type="number" class="form-control text-right" id="debitosatraso" name="debitosatraso" value="{{ simul.debitosatraso }}" required [(ngModel)]="simul.debitosatraso"/>
                     </div>
-                    <label class="col-sm-2">Juros Mora</label>
+                    <label class="col-sm-2">{{ 'Juros Mora' | translate }}</label>
                     <div class="col-sm-3">
                         <input disabled type="number" class="form-control text-right" id="jurosmora" name="jurosmora" value="{{ simul.jurosmora }}" required [(ngModel)]="simul.jurosmora"/>
                     </div>
                 </div>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Seguro</label>
+                    <label class="col-sm-2">{{ 'Seguro' | translate }}</label>
                     <div class="col-sm-3">
                         <input disabled type="number" class="form-control text-right" id="valorseguro" name="valorseguro" value="{{ simul.valorseguro }}" required [(ngModel)]="simul.valorseguro"/>
                     </div>
-                    <label class="col-sm-2">Despesas</label>
+                    <label class="col-sm-2">{{ 'Despesas' | translate }}</label>
                     <div class="col-sm-3">
                         <input disabled type="number" class="form-control text-right" id="despesasciva" name="despesasciva" value="{{ simul.despesasciva }}" required [(ngModel)]="simul.despesasciva"/>
                     </div>
                 </div>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Caução</label>
+                    <label class="col-sm-2">{{ 'Caução' | translate }}</label>
                     <div class="col-sm-3">
                         <input disabled type="number" class="form-control text-right" id="caucao" name="caucao" value="{{ simul.caucao }}" required [(ngModel)]="simul.caucao"/>
                     </div>
@@ -78,12 +78,12 @@
                 <br>
                 <dt>
                 <div class="row field-padding">
-                    <label class="col-sm-2">Total a pagar</label>
+                    <label class="col-sm-2">{{ 'Total a pagar' | translate }}</label>
                     <div class="col-sm-3">
                         <input disabled type="number" class="form-control text-right" id="valortotal" name="valortotal" value="{{ simul.valortotal }}" required [(ngModel)]="simul.valortotal"/>
                     </div>
                     <div class="btn-group-horizontal offset-sm-4" role="group" aria-label="...">
-                        <button type="submit" id="calc_button" class="btn btn-info btn-md" [disabled]="simulresc_form.invalid" (click)="fazSimulacaoRescisao()">Calcula</button>
+                        <button type="submit" id="calc_button" class="btn btn-info btn-md" [disabled]="simulresc_form.invalid" (click)="fazSimulacaoRescisao()">{{ 'Calcula' | translate }}</button>
                     </div>
                 </div>
                 </dt>

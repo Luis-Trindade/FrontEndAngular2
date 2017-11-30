@@ -9,6 +9,8 @@ import { ClienteComponent } from './cliente.component';
 import { PageHeaderModule } from '../../shared';
 import { ModalClienteModule } from '../modalcliente/modalcliente.module';
 import { ModalErrorModule } from '../modalerror/modalerror.module';
+import { ModalConfirmModule } from '../modalconfirm/modalconfirm.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -17,8 +19,10 @@ import { ModalErrorModule } from '../modalerror/modalerror.module';
         Ng2Charts,
         ClienteRoutingModule,
         InputTextModule, DataTableModule, ButtonModule, DialogModule,
+        TranslateModule,
         ModalClienteModule,
         ModalErrorModule,
+        ModalConfirmModule,
         PageHeaderModule
   ],
   declarations: [

@@ -36,3 +36,16 @@ $ npm run build
 ### Ajuda adicional
 
 Para obter ajudar sobre o Angular CLI use `ng help` ou leia [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+### Para fazer a skin para o AngularJS2:
+# favicon
+- colocar o ficheiro ico no directorio assets/icons
+- editar a tag link no ficheiro index.html para apontar para o novo ficheiro
+# logo
+- colocar o ficheiro com o logo no directorio assets/images
+- editar a tag img no ficheiro header.component.html para apontar para o novo logo
+- editar a tag img no ficheiro login.component.html para apontar para o novo logo
+# cor
+- editar o ficheiro styles/_globals.scss
+- Alterar as cores necessarias. A principal é $default-frontend-color
