@@ -51,12 +51,12 @@ export class ModalErrorComponent implements OnInit {
     }
 
     clickedOK() {
-        this.notify(true);
+        // this.notify(true);
         this.modalJanela.close();
     }
 
     clickedCancel() {
-        this.notify(false);
+        // this.notify(false);
         this.modalJanela.close();
     }
 }

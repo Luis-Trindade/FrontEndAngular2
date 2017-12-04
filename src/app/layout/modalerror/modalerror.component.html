@@ -9,7 +9,7 @@
         <p id="errmsg-usermsg">{{ Mensagem | translate }}</p>
     </div>
     <div class="modal-footer">
-        <button type="button" id="errmsg-button" class="btn btn-success" (click)="clickedOK()">{{ 'OK' | translate }}</button>
-        <button type="button" id="errmsg-cancel" class="btn btn-danger" [hidden]="isHidden" (click)="clickedCancel()">{{ 'Cancelar' | translate }}</button>
+        <button type="button" id="errmsg-button" class="btn btn-success" (click)="d('Cross click')">{{ 'OK' | translate }}</button>
+        <button type="button" id="errmsg-cancel" class="btn btn-danger" [hidden]="isHidden" (click)="d('Cross click')">{{ 'Cancelar' | translate }}</button>
     </div>
 </ng-template>

@@ -120,7 +120,7 @@
                         </div>
                     </div>
                     <div class="btn-group-vertical" role="group" aria-label="...">
-                        <button type="submit" id="calc_button" class="btn btn-info" [disabled]="simul_form.invalid" (click)="fazSimulacao()">{{ 'Calcula' | translate }}</button>
+                        <button type="submit" id="calc_button" class="btn btn-info" [disabled]="simul_form.invalid" >{{ 'Calcula' | translate }}</button>
                         <app-modalcashflow [cashflow]="simul.cashflow"></app-modalcashflow>
                         <button type="button" id="cfgrafico_button" class="btn btn-default" data-toggle="modal"
                                 data-target="#cfgrafico-dialog">{{ 'Gráfico' | translate }}</button>

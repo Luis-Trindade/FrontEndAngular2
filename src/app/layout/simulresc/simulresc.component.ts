@@ -36,12 +36,4 @@ export class SimulRescComponent implements OnInit {
         });
     }
 
-    getNotificationFromZoom(oEvento) {
-        if ( oEvento.status === 200 ) {
-            this.simul.contrato = oEvento.msg;
-        } else {
-            this.modalError.open(true, 'Erro no registo do cliente', oEvento.msg);
-        }
-    }
-
 }
