@@ -9,7 +9,7 @@ import { AppConfig } from '../config/app.config';
 export class PipelineService {
     constructor ( private http: Http, private config: AppConfig) {}
 
-    getChartValues() {
+    getChartValues(oCliente: number) {
         const doughnutChartLabels: string[] = [];
         const doughnutChartData: number[] = [];
 
@@ -17,7 +17,7 @@ export class PipelineService {
             'http://' +
             this.config.getConfig('hostBridge') +
             ':' + this.config.getConfig('portBridge') +
-            '/api/clientes/mapas/pipeline';
+            '/api/clientes/mapas/pipeline?procli=' + oCliente;
 
         return this.http.get(serviceUrl)
             .map((responseData) => {

@@ -36,10 +36,9 @@ export class ClienteService {
             this.config.getConfig('hostBridge') +
             ':' + this.config.getConfig('portBridge') +
             '/api/clientes/' + client;
-        return this.http.delete(serviceUrl)
-            .map((responseData) => {
+        return this.http.delete(serviceUrl).map((responseData) => {
                 return responseData;
-            });
+                });
     }
 
     validateNifRemote( clinfis : string ) {

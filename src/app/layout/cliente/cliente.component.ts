@@ -62,7 +62,7 @@ export class ClienteComponent implements OnInit, OnDestroy {
         });
 
 
-        this._pipelineservice.getChartValues()
+        this._pipelineservice.getChartValues(this.cliente.clinum)
             .subscribe(res => {
                 this.doughnutChartLabels = res.doughnutChartLabels;
                 this.doughnutChartData = res.doughnutChartData;
@@ -104,8 +104,8 @@ export class ClienteComponent implements OnInit, OnDestroy {
                 .subscribe(res => {
                     this.modalError.open(false, 'Cliente Apagado', 'O cliente ' + this.cliente.clinum + ' foi apagado com sucesso.');
                     this.parentRouter.navigateByUrl('/clientes');
-                }, error => {
-                    this.modalError.open(true, 'Erro', 'Erro ao apagar o cliente ' + this.cliente.clinum);
+                }, err => {
+                    this.modalError.open(true, 'Erro', 'Erro ao apagar o cliente ' + this.cliente.clinum + ': ' + err._body);
                 });
         }
     }
