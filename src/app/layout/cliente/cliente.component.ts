@@ -4,6 +4,7 @@ import { PipelineService } from '../../services/pipeline/pipeline.service';
 import { ClienteService } from '../../services/cliente/cliente.service';
 import { ContraService } from '../../services/contra/contra.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import { DomSanitizer } from '@angular/platform-browser';
 
 import { ModalErrorComponent } from '../modalerror/modalerror.component';
 import { ModalConfirmComponent } from '../modalconfirm/modalconfirm.component';
@@ -30,6 +31,7 @@ export class ClienteComponent implements OnInit, OnDestroy {
     contratos: Contrato[];
     operacao = 'Modificar';
     private sub: any;
+    public addressMap: string;
     // Doughnut
     public doughnutChartLabels: string[] = ['Leasing', 'Imobiliário', 'Crédito', 'Renting'];
     public doughnutChartData: number[] = [350, 450, 100, 200];
@@ -45,7 +47,8 @@ export class ClienteComponent implements OnInit, OnDestroy {
                 private _clienteservice: ClienteService,
                 private _contraservice: ContraService,
                 private route: ActivatedRoute,
-                private parentRouter: Router) {
+                private parentRouter: Router,
+                private _sanitizer: DomSanitizer) {
     }
 
     ngOnInit() {
@@ -56,6 +59,9 @@ export class ClienteComponent implements OnInit, OnDestroy {
                 .subscribe(res => {
                     console.log(JSON.stringify(res));
                     this.cliente = res;
+                    this.addressMap =
+                        'https://www.google.com/maps/embed/v1/place?key=AIzaSyB8G1i2Hwt_PIhC7LtRnBWQolyXhPbtjZE&q=+' +
+                        this.cliente.climor + ' ' + this.cliente.cliloc;
                 }, error => {
                     this.modalError.open(true, 'Erro', 'Erro ao obter o cliente.');
                 });
@@ -108,5 +114,9 @@ export class ClienteComponent implements OnInit, OnDestroy {
                     this.modalError.open(true, 'Erro', 'Erro ao apagar o cliente ' + this.cliente.clinum + ': ' + err._body);
                 });
         }
+    }
+
+    mapURL() {
+        return this._sanitizer.bypassSecurityTrustResourceUrl(this.addressMap);
     }
 }
