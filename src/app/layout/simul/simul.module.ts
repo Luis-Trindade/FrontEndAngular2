@@ -8,6 +8,7 @@ import { PageHeaderModule } from '../../shared';
 import { TranslateModule } from '@ngx-translate/core';
 import { ModalErrorModule } from '../modalerror/modalerror.module';
 import { ModalCashflowModule } from '../modalcashflow/modalcashflow.module';
+import { ModalChartLinesModule } from '../modalchartlines/modalchartlines.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ModalCashflowModule } from '../modalcashflow/modalcashflow.module';
         FormsModule,
         ModalErrorModule,
         ModalCashflowModule,
+        ModalChartLinesModule,
         TranslateModule,
         PageHeaderModule
   ],

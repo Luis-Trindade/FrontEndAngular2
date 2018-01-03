@@ -1,0 +1,17 @@
+<button type="button" id="graphiccf_button" class="btn btn-default" (click)="open(modalchartlines)">{{ 'Gráfico CF' | translate }}</button>
+    <ng-template #modalchartlines let-c="close" let-d="dismiss" >
+        <div class="modal-header modal-header-primary">
+            <h4 class="modal-title">{{ 'Cashflow gráfico' | translate }}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+           <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+           </canvas>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="c('Cross click')">Fechar</button>
+        </div>
+    </ng-template>
+

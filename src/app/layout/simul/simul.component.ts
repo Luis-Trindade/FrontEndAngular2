@@ -4,6 +4,7 @@ import { IvaService } from '../../services/iva/iva.service';
 import { SimulService } from '../../services/simul/simul.service';
 import { Simulacao } from '../../data/simul/Simulacao';
 import { ModalErrorComponent } from '../modalerror/modalerror.component';
+import { ModalChartLinesComponent } from '../modalchartlines/modalchartlines.component';
 
 @Component({
     selector: 'app-simul',
@@ -15,12 +16,21 @@ import { ModalErrorComponent } from '../modalerror/modalerror.component';
 })
 export class SimulComponent implements OnInit {
     @ViewChild('modalerror') modalError: ModalErrorComponent;
+    @ViewChild('modalchartlines') modalGrafico: ModalChartLinesComponent;
     simul: Simulacao;
     public iva: any[] = [];
     // erros
     errorHeader: string;
     errorMessage: string;
     isError: boolean;
+
+    lineChartLabels: Array<any> = [];
+
+    lineChartData: Array<any> = [
+        { data: [], label: 'Capital' },
+        { data: [], label: 'Juros' },
+        { data: [], label: 'Valor' }
+    ];
 
     constructor(private _ivaservice: IvaService,
                 private _simulservice: SimulService) {
@@ -38,6 +48,7 @@ export class SimulComponent implements OnInit {
         this._simulservice.postSimulValues(this.simul)
             .subscribe(res => {
                 this.simul = res;
+                this.setChartData();
             },
                 err => {
                 this.modalError.open(true, 'Erro', 'Erro na simulação de rendas: ' + err._body);
@@ -51,6 +62,23 @@ export class SimulComponent implements OnInit {
                 this.simul.gruporendas[0].factor = 1;
             }
         }
+    }
+
+    setChartData() {
+        const oCapital = [];
+        const oJuro = [];
+        const oValor = [];
+        this.simul.cashflow.forEach(x => {
+                oCapital.push(x.capital);
+                oJuro.push(x.juro);
+                oValor.push(x.valor);
+                this.lineChartLabels.push(x.datainiper);
+        });
+        this.lineChartData = [
+            { data: oCapital, label: 'Capital' },
+            { data: oJuro, label: 'Juros' },
+            { data: oValor, label: 'Valor' }
+        ];
     }
 
 }
